@@ -1,0 +1,26 @@
+.favoriteBox{
+  margin-bottom: 50px;
+  background: $fav_bg;
+  border-radius: 5px;
+
+  h5, small{
+    padding-left: 50px;
+  }
+
+  h5{
+    color: $fav_header;
+    margin-bottom: 0;
+    &:hover{
+      color: red;
+    }
+  }
+
+  p{
+    margin-bottom: 0;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+}

@@ -1,0 +1,18 @@
+
+<div>
+    <nav class="navbar navbar-light bg-faded search">
+        <form novalidate class="form-inline" ng-submit="homeCtrl.submit(); homeCtrl.openFilters(); homeCtrl.getFav()" name="searchForm">
+            Title: <input type="text" class="form-control" ng-model="homeCtrl.title" required> &nbsp;
+            Type: <select id="type" class="custom-select" ng-model="homeCtrl.type">
+            <option  value="">All</option>
+            <option  value="movie">movie</option>
+            <option  value="series">series</option>
+            <option  value="episode">episode</option>
+        </select>&nbsp;
+            Year: <input type="text"  maxlength="4" class="form-control year" ng-model="homeCtrl.year">&nbsp;
+            <input type="submit" value="Search" class="btn btn-outline-danger" ng-disabled="searchForm.$invalid">
+        </form>
+    </nav>
+<button ng-click="homeCtrl.test()">Test</button>
+</div>
+

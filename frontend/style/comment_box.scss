@@ -1,0 +1,32 @@
+.comment_box{
+	border-bottom: 1px solid $header_bg;
+
+	&_comment{
+
+	}
+
+	
+}
+
+.commentForm{
+	padding-bottom: 30px;
+
+	input.ng-valid, textarea.ng-valid, select.ng-valid {
+          border-color: green;
+      }
+      
+}
+
+.my_rating{
+    margin: 30px 0;
+	font-weight: 600;
+	color: $header_bg;
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+h6{
+	color: $header_bg;
+	ont-weight: 600;
+	margin: 20px 0;
+}

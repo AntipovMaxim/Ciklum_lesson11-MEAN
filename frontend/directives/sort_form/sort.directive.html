@@ -1,0 +1,10 @@
+<form class="sortForm">
+                <button ng-click="homeCtrl.sortBy()" class="btn btn-secondary sort" ng-class="{reverse: homeCtrl.reverse}">Sort by year &nbsp;</button>
+                <label>Filter by:</label>
+                <select ng-model="homeCtrl.filterType.Type" class="custom-select">
+                    <option  value="">All</option>
+                    <option  value="movie">movie</option>
+                    <option  value="series">series</option>
+                    <option  value="episode">episode</option>
+                </select>
+            </form>

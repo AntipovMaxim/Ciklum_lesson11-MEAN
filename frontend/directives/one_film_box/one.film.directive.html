@@ -1,0 +1,22 @@
+ <div>
+    <h3>{{filmCtrl.film.Title}}</h3>
+    <div class="one_film_box">
+        <div>
+            <img ng-src='{{filmCtrl.film.Poster !== "N/A" ? filmCtrl.film.Poster : "img/noposter.jpg"}}' alt="">
+        </div>
+       <div class="one_film_box_info">
+           <p><span class="items">Released: </span>{{filmCtrl.film.Released}}</p>
+           <p><span class="items">Type: </span>{{filmCtrl.film.Type}}</p>
+           <p><span class="items">Actors: </span>{{filmCtrl.film.Actors}}</p>
+           <p><span class="items">Country: </span>{{filmCtrl.film.Country}}</p>
+           <p><span class="items">Director: </span>{{filmCtrl.film.Director}}</p>
+           <p><span class="items">Genre: </span>{{filmCtrl.film.Genre}}</p>
+           <p><span class="items">Runtime: </span>{{filmCtrl.film.Runtime}}</p>
+           <p><span class="items">imdbRating: </span>{{filmCtrl.film.imdbRating}}</p>
+           <p><span class="items">Awards: </span>{{filmCtrl.film.Awards}}</p>
+           <p><span class="items">Plot: </span>{{filmCtrl.film.Plot}}</p>
+           <button class="btn btn-warning" ng-click="filmCtrl.addToFavorite()">Add to favorite</button>
+       </div>
+    </div>
+ </div>
+  

@@ -1,0 +1,15 @@
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+
+.film_list{
+
+  h4{
+    cursor: pointer;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}

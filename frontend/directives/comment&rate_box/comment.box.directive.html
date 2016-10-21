@@ -1,0 +1,45 @@
+
+
+	<div>
+		<div ng-show="totalRating" class="my_rating">Ciklum rating: {{totalRating}}</div>
+		<h6 ng-show="renderComment.length > 0">Comments:</h6>
+		<div ng-repeat="comment in renderComment" class="comment_box">
+			<h5>Author: {{comment.author}}</h5>
+			<small>Date: {{comment.date | date}}</small>
+			<p>Rating: {{comment.rating}}</p>
+			<p class="comment_box_comment">{{comment.comment}}</p>
+		</div>
+    
+		<div class="col-md-4"> 
+		<h6>Leave a comment and rate this movie:</h6>
+			<form novalidate name="commentForm" class="commentForm"> 
+				  <div class="form-group" ng-class="{ 'has-error' : commentForm.author.$invalid && !commentForm.author.$pristine }">
+				    <label for="author">Author:</label>
+				    <input type="text" class="form-control" id="author" ng-model="author" name="author"  placeholder="Enter name" required>
+
+				  </div>
+				  <div class="form-group">
+				    <label for="comment">Comment:</label>
+				    <textarea class="form-control" id="comment" ng-model="comment" rows="3" required></textarea> 
+				  </div>
+				   <div class="form-group">
+					    <label for="rating">Rate the film please:</label>
+					    <select class="form-control" id="rating" ng-model="rating" required>
+					      <option value='1'>1</option>
+					      <option value='2'>2</option>
+					      <option value='3'>3</option>
+					      <option value='4'>4</option>
+					      <option value='5'>5</option>
+					      <option value='6'>6</option>
+					      <option value='7'>7</option>
+					      <option value='8'>8</option>
+					      <option value='9'>9</option>
+					      <option value='10'>10</option>
+					    </select>
+	               </div>
+			  
+			      <button type="submit" ng-click="sendComment()" class="btn btn-danger" ng-disabled="commentForm.$invalid">Send</button>
+		    </form>
+		</div>
+	</div>
+	

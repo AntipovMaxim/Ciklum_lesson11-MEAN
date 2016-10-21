@@ -1,0 +1,13 @@
+   <div class="pagination">
+                <div class="btn">{{homeCtrl.from}} - {{homeCtrl.to}} of {{homeCtrl.totalRes}} films</div>
+                <button ng-show="homeCtrl.page > 1"
+                        ng-click="homeCtrl.submit();
+                        homeCtrl.getPrev()"
+                        class="btn btn-secondary">
+                    PREV</button>
+                <button ng-click="homeCtrl.submit();
+                        homeCtrl.getNext()"
+                        ng-hide="homeCtrl.totalRes/10 < homeCtrl.page"
+                        class="btn btn-secondary">
+                    NEXT</button>
+            </div>

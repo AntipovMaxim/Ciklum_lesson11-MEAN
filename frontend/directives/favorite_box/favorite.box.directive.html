@@ -1,0 +1,6 @@
+ <div class="favoriteBox">
+                 <div ng-repeat="fav in homeCtrl.uiqFav">
+                     <a href="#/film/{{fav.imdbID}}"><h5 class="card-title">{{fav.Title}}&hearts;</h5></a>
+                     <p><small class="card-text"> Year: {{fav.Year}}</small> </p>
+                 </div>
+             </div>

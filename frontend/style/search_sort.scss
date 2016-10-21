@@ -1,0 +1,16 @@
+
+.search{
+  text-align: center;
+}
+
+.sortForm{
+  margin: 10px 0;
+  text-align: center;
+}
+.sort:after {
+  content: '\25b2';
+}
+
+.sort.reverse:after {
+  content: '\25bc';
+}

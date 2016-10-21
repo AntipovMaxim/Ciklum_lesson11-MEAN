@@ -1,0 +1,32 @@
+.one_film{
+  padding: 0 50px;
+
+  a{
+    margin-top: 10px;
+  }
+  h3{
+    text-decoration: underline;
+    margin-bottom: 20px;
+  }
+  .items{
+    font-weight: 700;
+  }
+
+  &_box{
+    display: flex;
+    flex-wrap: wrap;
+
+    img{
+      margin-right: 20px;
+      width: 90%;
+      height: auto;
+      display: block;
+    }
+
+    &_info{
+      width: 700px;
+    }
+
+  }
+
+}

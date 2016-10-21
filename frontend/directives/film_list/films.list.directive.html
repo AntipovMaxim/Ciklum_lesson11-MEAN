@@ -1,0 +1,9 @@
+<div class="films" ng-repeat="film in homeCtrl.films | filter: homeCtrl.filterType | orderBy: 'Year': homeCtrl.reverse">
+   <a href="#/film/{{film.imdbID}}"><h4>{{film.Title}}</h4></a>
+   <p>Year: {{film.Year}} | Type: {{film.Type}}</p>             
+</div>
+
+
+
+
+
