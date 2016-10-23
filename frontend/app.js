@@ -14,6 +14,9 @@ import {errorBox} from './directives/error/error.directive';
 import {commentBox} from './directives/comment&rate_box/comment.box.directive';
 import {oneFilm} from './directives/one_film_box/one.film.directive';
 import filmsService from './services/films.service';
+import searchService from './services/search.service';
+import commentsService from './services/comments.service';
+
 import ngStorage from 'ngstorage';
 
 
@@ -21,8 +24,10 @@ import ngStorage from 'ngstorage';
 angular.module("myApp", ['ngRoute', 'ngResource' ,'ngStorage'])
     .config(routs)
     .service('filmsService', filmsService)
-    .controller('homeController', ['$scope', 'filmsService', '$resource', '$http', '$localStorage', homeController])
-    .controller('filmController', ['$scope', 'filmsService', '$resource', '$routeParams', '$localStorage', filmController])
+    .service('searchService', searchService)
+    .service('commentsService', commentsService)
+    .controller('homeController', ['$scope', 'filmsService', '$resource', '$http', '$localStorage', 'searchService', homeController])
+    .controller('filmController', ['$scope', 'filmsService', '$resource', '$routeParams', '$localStorage', 'searchService', 'commentsService', filmController])
     .directive('headerLogo', headerLogo)
     .directive('searchBar', searchBar)
     .directive('filmsList', filmsList)

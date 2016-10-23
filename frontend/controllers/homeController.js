@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default function ($scope, filmsService, $resource, $http, $localStorage, httpService) {
+export default function ($scope, filmsService, $resource, $http, $localStorage, searchService) {
     this.title = filmsService.title;
     this.films = filmsService.films;
     this.year = '';
@@ -12,6 +12,8 @@ export default function ($scope, filmsService, $resource, $http, $localStorage, 
     this.from = filmsService.from;
     this.to = filmsService.to;
     this.error = '';
+
+
 
     this.getNext = function(){
         this.page++;
@@ -73,43 +75,18 @@ export default function ($scope, filmsService, $resource, $http, $localStorage, 
     let favorite = ($localStorage.fav);
     this.uiqFav = _.uniqBy(favorite, 'imdbID');
 
-   this.test = function(){
-    
-     $http
-            .get('/test')
-            .then((res) => {
-    
-                
 
-                console.log(res);
 
-               
+   this.submit = function () {
+       searchService.searchMovies(this.title, this.year, this.type, this.page).then(res => {
+          
+         this.films = res.Search;
+         this.totalRes = res.totalResults;
+         this.error = res.Response;
 
-            }, (err) => {
-                console.error("Cannot fetch data! " + err);
-            });
+       })
+
    }
 
-    this.submit = function () {
-
-        const url = `http://www.omdbapi.com/?s=${this.title}&y=${this.year}&type=${this.type}&plot=full&r=json&page=${this.page}`;
-        
-        $http
-            .get(url)
-            .then((res) => {
-    
-                this.films = res.data.Search;
-                this.totalRes = res.data.totalResults;
-
-                console.log(res);
-
-                this.error = res.data.Response;
-
-            }, (err) => {
-                console.error("Cannot fetch data! " + err);
-            });
-
-       
-    };
 
 }
