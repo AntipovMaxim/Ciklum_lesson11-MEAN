@@ -26,11 +26,23 @@ import ngStorage from 'ngstorage';
 
 angular.module("myApp", ['ngRoute', 'ngResource' ,'ngStorage'])
     .config(routs)
+    .run(($rootScope, $location, $route, signService) => {
+      $rootScope.$on('$routeChangeStart',
+        function(event, next, current) {
+          signService.getUserStatus()
+          .then(function(){
+            if (next.access.restricted && !signService.isLoggedIn()){
+              $location.path('/signin');
+              $route.reload();
+            }
+          });
+      });
+    })
     .service('filmsService', filmsService)
     .service('searchService', searchService)
     .service('commentsService', commentsService)
     .service('signService', signService)
-    .controller('homeController', ['$scope', 'filmsService', '$resource', '$http', '$localStorage', 'searchService', homeController])
+    .controller('homeController', ['$scope', 'filmsService', '$resource', '$http', '$localStorage', 'searchService', 'signService', '$location', homeController])
     .controller('filmController', ['$scope', 'filmsService', '$resource', '$routeParams', '$localStorage', 'searchService', 'commentsService', filmController])
     .controller('signUpController', ['signService', '$location', signUpController])
     .controller('signInController', ['signService', '$location',  signInController])
