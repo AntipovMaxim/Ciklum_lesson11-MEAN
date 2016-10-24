@@ -1,9 +1,19 @@
     var express  = require('express');
     var app      = express();                               // create our app w/ express
-    var mongoose = require('mongoose');                     // mongoose for mongodb
+    var mongoose = require('mongoose');
+    var passport = require('passport');                     // mongoose for mongodb
     var morgan = require('morgan');             // log requests to the console (express4)
     var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
     var path = require('path');
+    var flash = require('connect-flash');
+    var cookieParser = require('cookie-parser');
+    var localStrategy = require('passport-local' ).Strategy;
+
+
+
+    
+
+    
     
     // configuration =================
  
@@ -28,11 +38,29 @@
 
 
     //Logger
-    app.use(morgan('dev'));  
+    
 
-    //Using bodyParser middleware
-    app.use(bodyParser.urlencoded({extended: true}));
+   
+    // define middleware
+    app.use(morgan('dev'));  
     app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(cookieParser());
+    app.use(require('express-session')({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: false
+    }));
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+     // user schema/model
+    var User = require('./models/user.js');
+    
+    // configure passport
+    passport.use(new localStrategy(User.authenticate()));
+    passport.serializeUser(User.serializeUser());
+    passport.deserializeUser(User.deserializeUser());
     
 
 
@@ -65,12 +93,28 @@
       // API Routes
       app.use('/search', require('./routes/movies'));
       app.use('/comments', require('./routes/comments'));
+      app.use('/user/', require('./routes/auth'));
 
 
       app.get('*', function(req, res) {
        res.sendFile(path.join(__dirname, '../frontend/index.html'));
     });
-     
+
+          // error hndlers
+        app.use(function(req, res, next) {
+          var err = new Error('Not Found');
+          err.status = 404;
+          next(err);
+        });
+
+        app.use(function(err, req, res) {
+          res.status(err.status || 500);
+          res.end(JSON.stringify({
+            message: err.message,
+            error: {}
+          }));
+        });
+         
 
     var port = process.env.PORT || 3000; 
     app.listen(port);

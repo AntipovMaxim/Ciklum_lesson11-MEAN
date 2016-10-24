@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default function ($scope, filmsService, $resource, $http, $localStorage, searchService) {
+export default function ($scope, filmsService, $resource, $http, $localStorage, searchService, signUpInService) {
     this.title = filmsService.title;
     this.films = filmsService.films;
     this.year = '';
@@ -87,6 +87,17 @@ export default function ($scope, filmsService, $resource, $http, $localStorage, 
        })
 
    }
+
+
+    this.logout = function () {
+
+      // call logout from service
+      signUpInService.logout()
+        .then(function () {
+          $location.path('/signUp');
+        });
+
+    };
 
 
 }

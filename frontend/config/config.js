@@ -12,5 +12,20 @@ export default function ($routeProvider, $locationProvider) {
             controllerAs: 'filmCtrl'
         })
 
+        .when('/signup', {
+            templateUrl: 'pages/signup.html',
+            controller: 'signUpController',
+            controllerAs: 'sUpCtrl'
+        })
+
+        .when('/signin', {
+            templateUrl: 'pages/signin.html',
+            controller: 'signInController',
+            controllerAs: 'sInCtrl'
+        })
+
+        .otherwise({
+            redirectTo: '/'
+        });
 
 }

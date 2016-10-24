@@ -1,0 +1,16 @@
+<div class="container">
+	<h3>Sign In</h3>
+<div ng-show="sInCtrl.error" class="alert alert-danger">{{sInCtrl.errorMessage}}</div>
+<form ng-submit="sInCtrl.login()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" ng-model="sInCtrl.name" required>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" ng-model="sInCtrl.password" required>
+  </div>
+  <button type="submit" class="btn btn-danger" ng-disabled="sInCtrl.disabled">Sign In</button>
+</form>  
+
+</div>

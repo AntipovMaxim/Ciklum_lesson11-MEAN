@@ -4,6 +4,8 @@ import ngResource from 'angular-resource';
 import routs from './config/config';
 import homeController from './controllers/homeController';
 import filmController from './controllers/filmController';
+import signUpController from './controllers/signUpController';
+import signInController from './controllers/signInController';
 import {headerLogo} from './directives/header/header.directive';
 import {searchBar} from './directives/search_bar/search.bar.directive';
 import {filmsList} from './directives/film_list/films.list.directive';
@@ -16,6 +18,7 @@ import {oneFilm} from './directives/one_film_box/one.film.directive';
 import filmsService from './services/films.service';
 import searchService from './services/search.service';
 import commentsService from './services/comments.service';
+import signService from './services/signUpIn.service';
 
 import ngStorage from 'ngstorage';
 
@@ -26,8 +29,11 @@ angular.module("myApp", ['ngRoute', 'ngResource' ,'ngStorage'])
     .service('filmsService', filmsService)
     .service('searchService', searchService)
     .service('commentsService', commentsService)
+    .service('signService', signService)
     .controller('homeController', ['$scope', 'filmsService', '$resource', '$http', '$localStorage', 'searchService', homeController])
     .controller('filmController', ['$scope', 'filmsService', '$resource', '$routeParams', '$localStorage', 'searchService', 'commentsService', filmController])
+    .controller('signUpController', ['signService', '$location', signUpController])
+    .controller('signInController', ['signService', '$location',  signInController])
     .directive('headerLogo', headerLogo)
     .directive('searchBar', searchBar)
     .directive('filmsList', filmsList)

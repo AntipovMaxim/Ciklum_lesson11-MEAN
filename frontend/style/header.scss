@@ -7,4 +7,36 @@
 	display: block;
 	margin: 0 auto;
     }
+
+   padding-bottom: 10px;
+}
+
+.nav_tab{
+	background: #970515;
+	border-radius: 5px;
+	border: 2px solid black;
+	padding: 2px;
+	margin-bottom: 5px;
+	color: black;
+}
+
+.nav_tab.active{
+	background: black;
+	color: #970515;
+}
+
+a{
+
+   text-decoration: none;
+   &:hover{
+   text-decoration: none;
+   color: black;
+   }
+   &:active{
+   text-decoration: none;
+   }
+   &:link{
+   text-decoration: none;
+   }
+	
 }
