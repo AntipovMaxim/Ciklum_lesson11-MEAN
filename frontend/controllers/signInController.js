@@ -1,4 +1,4 @@
-export default function(signService, $location){
+export default function(signService, $location, $rootScope){
 	this.name = '';
 	this.password = '';
 	this.error = false;
@@ -6,23 +6,22 @@ export default function(signService, $location){
 
     this.errorMessage = "";
 
-
 	
 	this.login = function () {
        
        this.disabled = true;
 
-      // call login from service
       signService.login(this.name, this.password)
-        // handle success
+        
         .then( (r) => {
-          // console.log(r)
           
-
           if(r.status == 200){
           	
           	$location.path('/');
             this.disabled = false;
+             //emit logging event to header
+             $rootScope.$emit( "log", 'log in' );
+
 
           }else{
           	  
@@ -32,15 +31,6 @@ export default function(signService, $location){
           }
           
         })
-        // handle error
-        // .catch((e) => {
-        //   // this.error = true;
-        //   this.error = true;
-        //   //console.log(e)
-        //   this.errorMessage = "Invalid username and/or password";
-        //   this.disabled = false;
-          
-        // });
            
     };
 

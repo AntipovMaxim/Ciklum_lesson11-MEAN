@@ -22,6 +22,7 @@ router.post('/signup', function(req, res) {
 });
 
 
+
 router.post('/signin', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
@@ -35,22 +36,26 @@ router.post('/signin', function(req, res, next) {
     req.logIn(user, function(err) {
       if (err) {
         return res.status(500).json({
-          err: 'Could not log in user'
+          err: 'Could not sign in user'
         });
       }
       res.status(200).json({
-        status: 'Login successful!'
+        status: 'Sign in successful!'
       });
     });
   })(req, res, next);
 });
 
+
+
 router.get('/logout', function(req, res) {
   req.logout();
   res.status(200).json({
-    status: 'Bye!'
+    status: 'out'
   });
 });
+
+
 
 router.get('/status', function(req, res) {
   if (!req.isAuthenticated()) {

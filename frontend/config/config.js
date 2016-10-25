@@ -27,10 +27,14 @@ export default function ($routeProvider) {
             controllerAs: 'filmCtrl',
             access: {restricted: true}
         })
+          .when('', {
+            
+            access: {restricted: true}
+        })
 
-        // .otherwise({
-        //     redirectTo: '/',
-        //     access: {restricted: false}
-        // })
+        .otherwise({
+            redirectTo: '/',
+            access: {restricted: false}
+        })
 
 }

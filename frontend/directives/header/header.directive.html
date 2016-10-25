@@ -2,6 +2,7 @@
     <img ng-src="../../img/logo.png">
     <a href="#/" ng-class="{ active: isCurrentPath('/') }" class="nav_tab" >Search</a>
     <a href="#/signup" ng-class="{ active: isCurrentPath('/signup') }" class="nav_tab">Sign Up</a>
-    <a href="#/signin" ng-class="{ active: isCurrentPath('/signin') }" class="nav_tab">Sign In</a>
+    <a ng-if="!logging" href="#/signin" ng-click='logging()' ng-class="{ active: isCurrentPath('/signin') }" class="nav_tab">Sign In</a>
+     <button ng-if="logging"   ng-click='logout()' class="nav_tab">Logout</button>
 </div>
 

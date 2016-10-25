@@ -7,3 +7,4 @@ export default function (){
     this.from = 1;
     this.to = 10;
 }
+

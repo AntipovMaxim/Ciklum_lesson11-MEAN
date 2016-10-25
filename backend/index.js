@@ -1,21 +1,13 @@
-    var express  = require('express');
-    var app      = express();                               // create our app w/ express
+    var express = require('express');
+    var app = express();                               
     var mongoose = require('mongoose');
-    var passport = require('passport');                     // mongoose for mongodb
-    var morgan = require('morgan');             // log requests to the console (express4)
-    var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
+    var passport = require('passport');                     
+    var morgan = require('morgan');             
+    var bodyParser = require('body-parser');    
     var path = require('path');
-    var flash = require('connect-flash');
     var cookieParser = require('cookie-parser');
     var localStrategy = require('passport-local' ).Strategy;
 
-
-
-    
-
-    
-    
-    // configuration =================
  
     // connect to mongoDB database 
    
@@ -37,10 +29,6 @@
     });
 
 
-    //Logger
-    
-
-   
     // define middleware
     app.use(morgan('dev'));  
     app.use(bodyParser.json());
@@ -63,8 +51,6 @@
     passport.deserializeUser(User.deserializeUser());
     
 
-
-
     //Webpack stuff
     var webpack = require('webpack');
     var webpackDevMiddleware = require('webpack-dev-middleware');
@@ -79,16 +65,6 @@
     app.use(express.static(path.join(__dirname, '../frontend')));
 
       
-
-              
-                                           // log every request to the console
-    //app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
-    // app.use(bodyParser.json());                                     // parse application/json
-    // app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
-    // app.use(methodOverride());
-
-    // listen (start app with node server.js) ======================================
-
   
       // API Routes
       app.use('/search', require('./routes/movies'));
@@ -97,10 +73,10 @@
       app.use('/favorites', require('./routes/favorites'));
 
 
-
-      app.get('*', function(req, res) {
-       res.sendFile(path.join(__dirname, '../frontend/index.html'));
+       app.get('*', function(req, res) {
+         res.sendFile(path.join(__dirname, '../frontend/index.html'));
     });
+
 
           // error hndlers
         app.use(function(req, res, next) {

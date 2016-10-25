@@ -1,4 +1,4 @@
-export function headerLogo($location, signService){
+export function headerLogo($location, signService, $rootScope){
     return {
         restrict: 'AE',
         replace: true,
@@ -10,9 +10,28 @@ export function headerLogo($location, signService){
               return $location.path() == path;
              };
 
-             console.log(signService.isLoggedIn());
+            
+             // out/in  batton
+             scope.logging = false;
 
-        	
+            
+             $rootScope.$on( "log", function () {
+             	scope.logging = true;
+
+             });
+
+
+              scope.logout = function () {
+
+			      signService.logout()
+			        .then(function () {
+			          $location.path('/signin');
+			        });
+
+			        scope.logging = false;
+
+			    };
+
         }
     }
 }

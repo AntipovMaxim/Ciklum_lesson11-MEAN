@@ -13,18 +13,13 @@ export default function ($scope, filmsService, $routeParams, searchService, favo
 
 
 
-    // this.movie = {
-    //     Title: this.film.Title,
-    //     Year: this.film.Year
-    // }
-
     this.getFromFavorites = function(){
         favoriteService.getFavorites().then(r =>{
-          // console.log(r);
+        
           this.favorite = r.some(i =>{
             return i.imdbID == this.id;
           })
-          console.log(this.favorite);
+          
         })
     }
 
@@ -34,10 +29,6 @@ export default function ($scope, filmsService, $routeParams, searchService, favo
         
     favoriteService.addFavourite({Title: film.Title, Year: film.Year, imdbID: film.imdbID}).then(r => console.log(r))
 
-
-        // const fav = $localStorage.fav || [];
-        // fav.unshift(this.film);
-        // $localStorage.fav = fav;
     }
 
     this.deleteFromFavorites = function(){

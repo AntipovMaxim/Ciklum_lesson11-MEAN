@@ -1,4 +1,4 @@
-export function commentBox($localStorage, $routeParams, commentsService){
+export function commentBox($routeParams, commentsService){
 	return {
 		restrict: 'AE',
 		replace: true,

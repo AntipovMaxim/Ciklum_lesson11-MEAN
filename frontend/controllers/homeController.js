@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default function ($scope, filmsService, searchService, signService, favoriteService, $location) {
+export default function ($scope, filmsService, searchService, signService, favoriteService, $rootScope) {
     this.title = filmsService.title;
     this.films = filmsService.films;
     this.year = '';
@@ -42,6 +42,15 @@ export default function ($scope, filmsService, searchService, signService, favor
         this.to = 10;
     }
 
+    $rootScope.$on( "log", (data) => {
+            
+                filmsService.films = [];
+                this.uiqFav = []; 
+                filmsService.bool = false;
+                filmsService.title = '';
+
+             });
+
 
     $scope.$watch(() => this.title, function (nv, ov) {
 
@@ -72,24 +81,17 @@ export default function ($scope, filmsService, searchService, signService, favor
         filmsService.to = nv;
     });
 
-   
-  //this.uiqFav = [];
 
 
    this.getFavorites = function(){
     favoriteService.getFavorites().then(r =>{
-      console.log(r);
+      
       this.uiqFav = _.uniqBy(r, 'imdbID');
-
     })
    }
 
    this.getFavorites();
     
-   
-    
-   
-
 
    this.submit = function () {
        searchService.searchMovies(this.title, this.year, this.type, this.page).then(res => {
@@ -101,17 +103,5 @@ export default function ($scope, filmsService, searchService, signService, favor
        })
 
    }
-
-
-    this.logout = function () {
-
-      // call logout from service
-      signService.logout()
-        .then(function () {
-          $location.path('/signup');
-        });
-
-    };
-
 
 }
