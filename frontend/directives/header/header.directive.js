@@ -1,4 +1,4 @@
-export function headerLogo($location){
+export function headerLogo($location, signService){
     return {
         restrict: 'AE',
         replace: true,
@@ -9,6 +9,8 @@ export function headerLogo($location){
         	 scope.isCurrentPath = function (path) {
               return $location.path() == path;
              };
+
+             console.log(signService.isLoggedIn());
 
         	
         }

@@ -4,7 +4,7 @@ export default function(signService, $location){
 	this.error = false;
     this.disabled;
 
-    this.errorMessage = 'dddddddddddddd';
+    this.errorMessage = "";
 
 
 	

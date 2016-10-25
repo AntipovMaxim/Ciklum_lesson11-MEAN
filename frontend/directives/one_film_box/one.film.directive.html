@@ -15,7 +15,8 @@
            <p><span class="items">imdbRating: </span>{{filmCtrl.film.imdbRating}}</p>
            <p><span class="items">Awards: </span>{{filmCtrl.film.Awards}}</p>
            <p><span class="items">Plot: </span>{{filmCtrl.film.Plot}}</p>
-           <button class="btn btn-warning" ng-click="filmCtrl.addToFavorite()">Add to favorite</button>
+           <button ng-if="!filmCtrl.favorite" class="btn btn-warning" ng-click="filmCtrl.addToFavorite(filmCtrl.film)">Add to favorites</button>
+           <button ng-if="filmCtrl.favorite" class="btn btn-danger" ng-click="filmCtrl.deleteFromFavorites()">Delete from favorites</button>
        </div>
     </div>
  </div>

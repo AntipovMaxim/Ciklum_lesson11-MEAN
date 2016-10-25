@@ -18,18 +18,19 @@ export default function ($http, $q){
      
       return $http.get('/user/status')
       // handle success
-      .success((data) => {
-        if(data.status){
+      .then((r) => {
+        if(r.data.status){
           this.user = true;
         } else {
           this.user = false;
         }
-      })
-      // handle error
-      .error((data) => {
-        this.user = false;
-      });
-    }
+      },
+         (e) =>{
+            this.user = false;
+         }
+      )
+      
+          }
 
 
     this.login = function(username, password) {

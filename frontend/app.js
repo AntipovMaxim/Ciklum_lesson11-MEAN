@@ -19,6 +19,7 @@ import filmsService from './services/films.service';
 import searchService from './services/search.service';
 import commentsService from './services/comments.service';
 import signService from './services/signUpIn.service';
+import favoriteService from './services/favorites.service';
 
 import ngStorage from 'ngstorage';
 
@@ -28,9 +29,11 @@ angular.module("myApp", ['ngRoute', 'ngResource' ,'ngStorage'])
     .config(routs)
     .run(($rootScope, $location, $route, signService) => {
       $rootScope.$on('$routeChangeStart',
-        function(event, next, current) {
+        (event, next, current) => {
+
           signService.getUserStatus()
-          .then(function(){
+          .then(()=>{
+            //console.log(next.$$route);
             if (next.access.restricted && !signService.isLoggedIn()){
               $location.path('/signin');
               $route.reload();
@@ -42,8 +45,9 @@ angular.module("myApp", ['ngRoute', 'ngResource' ,'ngStorage'])
     .service('searchService', searchService)
     .service('commentsService', commentsService)
     .service('signService', signService)
-    .controller('homeController', ['$scope', 'filmsService', '$resource', '$http', '$localStorage', 'searchService', 'signService', '$location', homeController])
-    .controller('filmController', ['$scope', 'filmsService', '$resource', '$routeParams', '$localStorage', 'searchService', 'commentsService', filmController])
+    .service('favoriteService', favoriteService)
+    .controller('homeController', ['$scope', 'filmsService', 'searchService', 'signService', 'favoriteService', '$location',  homeController])
+    .controller('filmController', ['$scope', 'filmsService', '$routeParams', 'searchService', 'favoriteService', filmController])
     .controller('signUpController', ['signService', '$location', signUpController])
     .controller('signInController', ['signService', '$location',  signInController])
     .directive('headerLogo', headerLogo)

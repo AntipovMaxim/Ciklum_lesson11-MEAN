@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default function ($scope, filmsService, $resource, $http, $localStorage, searchService, signService, $location) {
+export default function ($scope, filmsService, searchService, signService, favoriteService, $location) {
     this.title = filmsService.title;
     this.films = filmsService.films;
     this.year = '';
@@ -72,9 +72,23 @@ export default function ($scope, filmsService, $resource, $http, $localStorage, 
         filmsService.to = nv;
     });
 
-    let favorite = ($localStorage.fav);
-    this.uiqFav = _.uniqBy(favorite, 'imdbID');
+   
+  //this.uiqFav = [];
 
+
+   this.getFavorites = function(){
+    favoriteService.getFavorites().then(r =>{
+      console.log(r);
+      this.uiqFav = _.uniqBy(r, 'imdbID');
+
+    })
+   }
+
+   this.getFavorites();
+    
+   
+    
+   
 
 
    this.submit = function () {

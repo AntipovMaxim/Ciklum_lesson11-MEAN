@@ -6,7 +6,16 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 var User = new Schema({
   username: String,
-  password: String
+  password: String,
+  favorites: [{
+
+    Title: String,
+
+    Year: String,
+
+    imdbID: String
+
+  }]
 });
 
 User.plugin(passportLocalMongoose);

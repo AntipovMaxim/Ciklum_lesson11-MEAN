@@ -1,4 +1,4 @@
-export default function ($routeProvider, $locationProvider) {
+export default function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'pages/home.html',
@@ -28,8 +28,9 @@ export default function ($routeProvider, $locationProvider) {
             access: {restricted: true}
         })
 
-        .otherwise({
-            redirectTo: '/'
-        });
+        // .otherwise({
+        //     redirectTo: '/',
+        //     access: {restricted: false}
+        // })
 
 }

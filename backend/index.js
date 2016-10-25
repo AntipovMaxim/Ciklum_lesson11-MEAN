@@ -93,7 +93,9 @@
       // API Routes
       app.use('/search', require('./routes/movies'));
       app.use('/comments', require('./routes/comments'));
-      app.use('/user/', require('./routes/auth'));
+      app.use('/user', require('./routes/auth'));
+      app.use('/favorites', require('./routes/favorites'));
+
 
 
       app.get('*', function(req, res) {
